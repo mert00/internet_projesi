@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Finans Rotası</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../assets/css/demo.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-image="../assets/img/pexels-pixabay-33545.jpg" >
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="javascript:;" class="simple-text">
+                      FİNANS ROTASI
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Gelir-Gider</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="aylik_harcama.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Aylık Harcama Analizi</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="yatirim_performansi.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Yatırım Performansı <br>
+                                 İzleme</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="gecmis_yatirim_hesaplama.html">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Geçmiş Yatırım <br>
+                                Getirisi Hesaplama</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" href="./user.html">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Profilim</p>
+                        </a>
+                    </li>
+
+
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                <div class="container-fluid">
+                    
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        
+                        <ul class="navbar-nav ml-auto">
+                            
+                            <li class="nav-item">
+                                <span id="currentDate" class="nav-link"></span> <!-- Tarih buraya eklenecek -->
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="user.html">
+                                    <span class="no-icon">Hesabım</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="./login_signup.html">
+                                    <span class="no-icon">Çıkış</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <script>
+                // Bugünün tarihini al ve formatla
+                const today = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const formattedDate = today.toLocaleDateString('tr-TR', options);
+            
+                // Tarihi #currentDate id'li öğeye yerleştir
+                document.getElementById('currentDate').textContent = formattedDate;
+            </script>
+            
+            <!-- End Navbar -->
+
+            <!-- Content Section -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="section">
+                        <div class="row">
+                            <!-- Gelir ve Gider Giriş Formu -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Gelir ve Gider Giriş Formu</h4>
+                                        <p class="card-category">Gelir veya gider bilgilerini kaydedin ve kategorilendirin</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="amount">Tutar</label>
+                                                <input type="number" class="form-control" id="amount" placeholder="Tutar girin">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="category">Kategori</label>
+                                                <select class="form-control" id="category" onchange="updateSubcategory()">
+                                                    <option value="">Kategori Seçin</option>
+                                                    <option value="Gelir">Gelir</option>
+                                                    <option value="Gider">Gider</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="subcategory">Alt Kategori</label>
+                                                <select class="form-control" id="subcategory">
+                                                    <option value="">Önce Kategori Seçin</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="date">Tarih</label>
+                                                <input type="date" class="form-control" id="date">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Açıklama</label>
+                                                <textarea class="form-control" id="description" rows="3" placeholder="Açıklama girin"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-fill">Kaydet</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pie Grafiği -->
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Gelir ve Gider Dağılımı</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="myPieChart" width="400" height="400"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav>
+                        <ul class="footer-menu">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                        <p class="copyright text-center">
+                            <a href="http://www.creative-tim.com">Finans Rotası</a> tarafından tasarlandı
+                            <script>document.write(new Date().getFullYear())</script>
+                        </p>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- JavaScript Kütüphaneleri ve Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Kategoriye göre alt kategoriyi güncelleme fonksiyonu
+        function updateSubcategory() {
+            const category = document.getElementById("category").value;
+            const subcategory = document.getElementById("subcategory");
+
+            const gelirSubcategories = ["Maaş", "Faiz", "Yatırım", "Diğer gelirler"];
+            const giderSubcategories = ["Kira", "Fatura", "Yiyecek ve İçecek", "Ulaşım", "Kredi Kartı ve Borç Ödemeleri", "Sağlık ve Bakım", "Eğitim", "Eğlence ve Hobiler", "Giyim ve Aksesuar"];
+
+            subcategory.innerHTML = "";
+
+            let options = [];
+            if (category === "Gelir") {
+                options = gelirSubcategories;
+            } else if (category === "Gider") {
+                options = giderSubcategories;
+            }
+
+            options.forEach(function(item) {
+                const option = document.createElement("option");
+                option.value = item;
+                option.textContent = item;
+                subcategory.appendChild(option);
+            });
+        }
+
+        // Chart.js Pie Grafiği Kodu
+        const data = {
+            labels: ['Gelir', 'Gider', 'Yatırım', 'Diğer'],
+            datasets: [{
+                label: 'Gelir ve Gider Dağılımı',
+                data: [300, 200, 100, 50],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+            }]
+        };
+
+        const config = {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Gelir ve Gider Dağılımı'
+                    }
+                }
+            },
+        };
+
+        window.onload = function() {
+            const ctx = document.getElementById('myPieChart').getContext('2d');
+            new Chart(ctx, config);
+        };
+    </script>
+
+    
+
+
+</body>
+</html>
